@@ -14,6 +14,11 @@ jobs:
           token: ${{ secrets.TEST_AUTOMATION_REPO_ACCESS }}
           repository: sksGHubAcc/SeleniumAutomation
           event-type: trigger-test
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo 'The triggering workflow failed'
       
       
   
